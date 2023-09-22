@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import Input from "./Input";
 import { GlobalStyles } from "../../constants/style";
 import { useEffect, useState } from "react";
@@ -37,14 +37,39 @@ const ExpenseForm = ({
     });
   };
 
+  const dataIsValid = (expenseData) => {
+    let message = undefined;
+
+    if (isNaN(expenseData.amount) || expenseData.amount <= 0) {
+      message = "Monto debe ser mayor a cero";
+    }
+
+    if (!message && expenseData.date.toString() === "Invalid Date") {
+      message = "Fecha invalida";
+    }
+
+    if (!message && expenseData.description.trim().length === 0) {
+      message = "Agregar una descripción";
+    }
+
+    if (message) {
+      Alert.alert("Entrada Invalida", message);
+    }
+    return !message;
+  };
+
   const submitHandler = () => {
     const expenseData = {
       amount: +inputValue.amount,
       date: new Date(inputValue.date),
       description: inputValue.description,
     };
-    onSubmit(expenseData);
+
+    if (dataIsValid(expenseData)) {
+      onSubmit(expenseData);
+    }
   };
+
   return (
     <View style={styles.form}>
       <Text style={styles.title}>Tu Gasto</Text>
