@@ -16,7 +16,7 @@ export const storeExpenses = async (expenseData) => {
 export const fetchExpenses = async () => {
   const response = await axios.get(BACKEND_URL + "/expenses.json");
 
-  console.log("Datos de la consulta Firbase. Gastos: ", response);
+  //console.log("Datos de la consulta Firebase. Gastos: ", response);
   const expenses = [];
 
   const data = response.data;
@@ -32,3 +32,11 @@ export const fetchExpenses = async () => {
 
   return expenses;
 };
+
+export function updateExpense(id, expensedata) {
+  return axios.put(BACKEND_URL + `/expenses/${id}.json`, expensedata);
+}
+
+export function deleteExpense(id) {
+  return axios.delete(BACKEND_URL + `/expenses/${id}.json`);
+}
