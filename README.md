@@ -129,6 +129,11 @@ return (
   );
 };
 ```
+
+### Agregar pantalla para agregar o modificar gastos
+
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/23ab6be2-637f-44eb-8b36-9046a2e3f0dc)
+
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/f3820030-2f74-419c-a62c-749ef4f70e0d)
 
 ### Backend Uso de Firebase
@@ -184,8 +189,4 @@ export const fetchExpenses = async () => {
  ### Borrar Gasto
 ![deleteCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/5697a091-8fa9-4c79-bb48-e9b825133641)
 
-=======
-### Agregar pantalla para agregar o modificar gastos
-
-![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/23ab6be2-637f-44eb-8b36-9046a2e3f0dc)
 
