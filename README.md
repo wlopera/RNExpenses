@@ -131,3 +131,46 @@ return (
 ```
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/f3820030-2f74-419c-a62c-749ef4f70e0d)
 
+### Backend Uso de Firebase
+* util\http.js
+```
+import axios from "axios";
+
+const BACKEND_URL =
+  "https://react-native-expenses-14061-default-rtdb.firebaseio.com";
+
+export const storeExpenses = async (expenseData) => {
+  const response = await axios.post(
+    BACKEND_URL + "/expenses.json",
+    expenseData
+  );
+  const id = response.data.name;
+  return id;
+};
+
+// Promesa retornada por axios get y transaformada en data de gastos
+export const fetchExpenses = async () => {
+  const response = await axios.get(BACKEND_URL + "/expenses.json");
+
+  console.log("Datos de la consulta Firbase. Gastos: ", response);
+  const expenses = [];
+
+  const data = response.data;
+
+  for (const key in data) {
+    expenses.push({
+      id: key,
+      amount: data[key].amount,
+      date: new Date(data[key].date),
+      description: data[key].description,
+    });
+  }
+
+  return expenses;
+};
+```
+* Ajustar componentes de ventanas que consumen esos servicios y Api de context utilizada [ver \RNExpenses\doc\React Native - RNExpenses.docx ]
+
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/de26997b-db1a-4a8e-9879-330292d8e0e8)
+
+ 
