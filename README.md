@@ -174,6 +174,7 @@ export const fetchExpenses = async () => {
   return expenses;
 };
 ```
+
 * Ajustar componentes de ventanas que consumen esos servicios y Api de context utilizada [ver \RNExpenses\doc\React Native - RNExpenses.docx ]
 
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/de26997b-db1a-4a8e-9879-330292d8e0e8)
@@ -188,5 +189,11 @@ export const fetchExpenses = async () => {
 
  ### Borrar Gasto
 ![deleteCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/5697a091-8fa9-4c79-bb48-e9b825133641)
+
+### Agregar Imagen o mensaje de carga
+
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/5e2923da-c5c8-475e-b22f-e788a21d857e)
+![Captura2](https://github.com/wlopera/RNExpenses/assets/7141537/f12a9149-3686-41de-ae19-cdf4bf224d6e)
+
 
 
