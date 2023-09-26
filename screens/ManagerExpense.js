@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import IconButton from "../components/UI/IconButton";
@@ -6,8 +6,10 @@ import { GlobalStyles } from "../constants/style";
 import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpenses, updateExpense } from "../util/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 const ManagerExpense = ({ route, navigation }) => {
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const expensesCtx = useContext(ExpensesContext);
 
   // ? si no existe devuelve undefined sino el valor
@@ -30,7 +32,9 @@ const ManagerExpense = ({ route, navigation }) => {
 
   const deleteExpenseHandler = async () => {
     expensesCtx.deleteExpense(editedExpenseId);
+    setIsSubmiting(true);
     await deleteExpense(editedExpenseId);
+    // setIsSubmiting(false); // no es cnecesario debio al goBack
     navigation.goBack();
   };
 
@@ -39,6 +43,7 @@ const ManagerExpense = ({ route, navigation }) => {
   };
 
   const confirmHandler = async (expenseData) => {
+    setIsSubmiting(true);
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
       await updateExpense(editedExpenseId, expenseData);
@@ -46,10 +51,16 @@ const ManagerExpense = ({ route, navigation }) => {
       const id = await storeExpenses(expenseData);
       expensesCtx.addExpense({ ...expenseData, id: id });
     }
+    // setIsSubmiting(false); // no es cnecesario debio al goBack
 
     navigation.goBack();
   };
 
+  if (isSubmiting) {
+   return <LoadingOverlay />
+  }
+
+  console.log(123, isSubmiting);
   return (
     <View style={styles.container}>
       <ExpenseForm
