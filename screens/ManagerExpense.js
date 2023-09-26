@@ -3,9 +3,9 @@ import { StyleSheet, View } from "react-native";
 
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/style";
-import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
+import { deleteExpense, storeExpenses, updateExpense } from "../util/http";
 
 const ManagerExpense = ({ route, navigation }) => {
   const expensesCtx = useContext(ExpensesContext);
@@ -28,8 +28,9 @@ const ManagerExpense = ({ route, navigation }) => {
     });
   }, [navigation, isEditing]);
 
-  const deleteExpenseHandler = () => {
+  const deleteExpenseHandler = async () => {
     expensesCtx.deleteExpense(editedExpenseId);
+    await deleteExpense(editedExpenseId);
     navigation.goBack();
   };
 
@@ -37,11 +38,13 @@ const ManagerExpense = ({ route, navigation }) => {
     navigation.goBack();
   };
 
-  const confirmHandler = (expenseData) => {
+  const confirmHandler = async (expenseData) => {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
+      await updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCtx.addExpense(expenseData);
+      const id = await storeExpenses(expenseData);
+      expensesCtx.addExpense({ ...expenseData, id: id });
     }
 
     navigation.goBack();
