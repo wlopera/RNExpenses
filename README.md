@@ -184,3 +184,8 @@ export const fetchExpenses = async () => {
  ### Borrar Gasto
 ![deleteCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/5697a091-8fa9-4c79-bb48-e9b825133641)
 
+=======
+### Agregar pantalla para agregar o modificar gastos
+
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/23ab6be2-637f-44eb-8b36-9046a2e3f0dc)
+
