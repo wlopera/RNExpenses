@@ -129,6 +129,11 @@ return (
   );
 };
 ```
+
+### Agregar pantalla para agregar o modificar gastos
+
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/23ab6be2-637f-44eb-8b36-9046a2e3f0dc)
+
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/f3820030-2f74-419c-a62c-749ef4f70e0d)
 
 ### Backend Uso de Firebase
@@ -169,13 +174,26 @@ export const fetchExpenses = async () => {
   return expenses;
 };
 ```
+
 * Ajustar componentes de ventanas que consumen esos servicios y Api de context utilizada [ver \RNExpenses\doc\React Native - RNExpenses.docx ]
 
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/de26997b-db1a-4a8e-9879-330292d8e0e8)
+
+ ### Agregar Gasto
+ ![add-2Captura](https://github.com/wlopera/RNExpenses/assets/7141537/89a5e673-4f0b-44cf-8642-df0e143ede20)
+
+![addCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/0f00969a-e20f-4874-a349-23c9284e8231)
+
+ ### Modificar Gasto
+![updateCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/c434c4d6-832b-49fa-a209-85159a5e1769)
+
+ ### Borrar Gasto
+![deleteCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/5697a091-8fa9-4c79-bb48-e9b825133641)
 
 ### Agregar Imagen o mensaje de carga
 
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/5e2923da-c5c8-475e-b22f-e788a21d857e)
 ![Captura2](https://github.com/wlopera/RNExpenses/assets/7141537/f12a9149-3686-41de-ae19-cdf4bf224d6e)
+
 
 
