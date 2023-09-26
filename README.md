@@ -173,4 +173,14 @@ export const fetchExpenses = async () => {
 
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/de26997b-db1a-4a8e-9879-330292d8e0e8)
 
- 
+ ### Agregar Gasto
+ ![add-2Captura](https://github.com/wlopera/RNExpenses/assets/7141537/89a5e673-4f0b-44cf-8642-df0e143ede20)
+
+![addCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/0f00969a-e20f-4874-a349-23c9284e8231)
+
+ ### Modificar Gasto
+![updateCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/c434c4d6-832b-49fa-a209-85159a5e1769)
+
+ ### Borrar Gasto
+![deleteCaptura](https://github.com/wlopera/RNExpenses/assets/7141537/5697a091-8fa9-4c79-bb48-e9b825133641)
+
