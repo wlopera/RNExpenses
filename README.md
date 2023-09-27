@@ -195,5 +195,47 @@ export const fetchExpenses = async () => {
 ![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/5e2923da-c5c8-475e-b22f-e788a21d857e)
 ![Captura2](https://github.com/wlopera/RNExpenses/assets/7141537/f12a9149-3686-41de-ae19-cdf4bf224d6e)
 
+### Manejo de errores
+
+```
+import { StyleSheet, Text, View } from "react-native";
+import { GlobalStyles } from "../../constants/style";
+import Button from "./Button";
+
+const ErrorOverlay = ({ message, onConfirm }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={[styles.text, styles.title]}>A ocurrido un Error!</Text>
+      <Text style={styles.text}>{message}</Text>
+      <Button onPress={onConfirm}>Continuar</Button>
+    </View>
+  );
+};
+
+export default ErrorOverlay;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+    backgroundColor: GlobalStyles.colors.primary700,
+  },
+  text: {
+    color: "white",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+});
+```
+![Captura](https://github.com/wlopera/RNExpenses/assets/7141537/39333687-5cef-4fdc-b807-b4b9e8b13344)
+![Captura1](https://github.com/wlopera/RNExpenses/assets/7141537/8302f574-40a4-4997-93c3-91edba9436d0)
+
+
 
 

@@ -7,9 +7,12 @@ import { ExpensesContext } from "../store/expenses-context";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 import { deleteExpense, storeExpenses, updateExpense } from "../util/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 const ManagerExpense = ({ route, navigation }) => {
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [error, setError] = useState();
+
   const expensesCtx = useContext(ExpensesContext);
 
   // ? si no existe devuelve undefined sino el valor
@@ -31,11 +34,17 @@ const ManagerExpense = ({ route, navigation }) => {
   }, [navigation, isEditing]);
 
   const deleteExpenseHandler = async () => {
-    expensesCtx.deleteExpense(editedExpenseId);
     setIsSubmiting(true);
-    await deleteExpense(editedExpenseId);
-    // setIsSubmiting(false); // no es cnecesario debio al goBack
-    navigation.goBack();
+    try {
+      await deleteExpense(editedExpenseId);
+      expensesCtx.deleteExpense(editedExpenseId);
+      navigation.goBack();
+    } catch (error) {
+      setError(
+        "No se pudo borrar el gasto. Favor intente más tarde!"
+      );
+      setIsSubmiting(false);
+    }
   };
 
   const cancelHandler = () => {
@@ -44,20 +53,33 @@ const ManagerExpense = ({ route, navigation }) => {
 
   const confirmHandler = async (expenseData) => {
     setIsSubmiting(true);
-    if (isEditing) {
-      expensesCtx.updateExpense(editedExpenseId, expenseData);
-      await updateExpense(editedExpenseId, expenseData);
-    } else {
-      const id = await storeExpenses(expenseData);
-      expensesCtx.addExpense({ ...expenseData, id: id });
+    try {
+      if (isEditing) {
+        expensesCtx.updateExpense(editedExpenseId, expenseData);
+        await updateExpense(editedExpenseId, expenseData);
+      } else {
+        const id = await storeExpenses(expenseData);
+        expensesCtx.addExpense({ ...expenseData, id: id });
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError(
+        "No se pudo salvar el gasto. Favor intente más tarde!"
+      );
+      setIsSubmiting(false);
     }
-    // setIsSubmiting(false); // no es cnecesario debio al goBack
-
-    navigation.goBack();
   };
 
+  function errorHandler() {
+    setError(null);
+  }
+
+  if (error && !isSubmiting) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler} />;
+  }
+
   if (isSubmiting) {
-   return <LoadingOverlay />
+    return <LoadingOverlay />;
   }
 
   console.log(123, isSubmiting);
